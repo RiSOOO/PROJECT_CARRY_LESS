@@ -1,3 +1,5 @@
 from django.shortcuts import render
 
-# Create your views here.
+class MainPageViev(tameplateView):
+    template_name = "index.html"
+    extra_context = {}
