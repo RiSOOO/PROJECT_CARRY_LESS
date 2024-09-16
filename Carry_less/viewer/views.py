@@ -1,5 +1,10 @@
 from django.shortcuts import render
 
-class MainPageViev(tameplateView):
-    template_name = "index.html"
+from django.views.generic import TemplateView
+
+class MainPageView(TemplateView):
+    template_name = 'main.html'
     extra_context = {}
+
+
+
