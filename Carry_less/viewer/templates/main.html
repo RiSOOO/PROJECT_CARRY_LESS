@@ -18,7 +18,7 @@
     <h3>Produkty:</h3>
     <ul>
         {% for product in all_products %}
-            <li>{{ product.category_ID}} -{{product.name}}</li> <!-- Oprava jména proměnné -->
+            <li>{{ product.category_ID}} -{{product.products_of_categories}} -{{product.name}}</li> <!-- Oprava jména proměnné -->
         {% endfor %}
     </ul>
 </body>

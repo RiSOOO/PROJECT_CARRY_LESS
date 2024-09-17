@@ -15,4 +15,4 @@ class Product(models.Model):
     products_of_categories = models.ForeignKey(Categorie, on_delete=models.DO_NOTHING, null=True)
 
     def __str__(self):
-        return (f"Nabídka {self.name} - {self.weight} - {self.price} - {self.brand} -{self.category_ID}")
+        return (f"Nabídka {self.name} - {self.weight} - {self.price} - {self.brand} -{self.category_ID} -{self.products_of_categories}")
