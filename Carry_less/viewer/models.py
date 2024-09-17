@@ -1,12 +1,12 @@
 from django.db import models
 
 
-class Categories(models.Model):
+class Categorie(models.Model):
     name = models.CharField(max_length=30)
     def __str__(self):
         return f"Kategorie {self.name}"
 
-class Products(models.Model):
+class Product(models.Model):
     name = models.CharField(max_length=30)
     weight = models.IntegerField()
     price = models.IntegerField()

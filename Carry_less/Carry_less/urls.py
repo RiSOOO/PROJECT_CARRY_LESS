@@ -16,12 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from viewer.views import MainPageView
-from viewer.models import Categories
-from viewer.models import Products
+from viewer.models import Categorie
+from viewer.models import Product
 
 
-admin.site.register(Categories)
-admin.site.register(Products)
+admin.site.register(Categorie)
+admin.site.register(Product)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
