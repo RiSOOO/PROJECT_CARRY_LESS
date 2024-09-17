@@ -15,5 +15,11 @@
         {% endfor %}
     </ul>
 
+    <h3>Produkty:</h3>
+    <ul>
+        {% for product in all_products %}
+            <li>{{ product.category_ID}} -{{product.name}}</li> <!-- Oprava jména proměnné -->
+        {% endfor %}
+    </ul>
 </body>
 </html>
