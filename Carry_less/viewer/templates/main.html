@@ -6,6 +6,14 @@
 </head>
 <body>
     <h1>Vítejte na eshopu!</h1>
-    <p>Toto je vaše jednoduchá šablona.</p>
+    <p>Zde múžete pořídit vše na kempování.</p>
+
+    <h2>Kategorie:</h2>
+    <ul>
+        {% for categorie in all_categories %}
+            <li>{{ categorie.name }}</li> <!-- Oprava jména proměnné -->
+        {% endfor %}
+    </ul>
+
 </body>
 </html>

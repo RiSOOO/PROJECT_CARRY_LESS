@@ -19,7 +19,6 @@ from viewer.views import MainPageView
 from viewer.models import Categorie
 from viewer.models import Product
 
-
 admin.site.register(Categorie)
 admin.site.register(Product)
 
