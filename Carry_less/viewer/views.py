@@ -12,6 +12,20 @@ class MainPageView(TemplateView):
 
     }
 
+class CategoriesView(TemplateView):
+    template_name = "kategorie.html"
+    extra_context = {
+    "all_categories" : Categorie.objects.all()
+
+    }
+
+class ProductsView(TemplateView):
+    template_name = "produkty.html"
+    extra_context = {
+    "all_products": Product.objects.all()
+
+    }
+
 
 
 

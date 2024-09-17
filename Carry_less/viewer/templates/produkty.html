@@ -1,15 +1,8 @@
-    {% extends 'base.html' %}
+ {% extends 'base.html' %}
 
     {% block content %}
-    <h1>Vítejte na eshopu!</h1>
+    <h1>Produkty</h1>
     <p>Zde múžete pořídit vše na kempování.</p>
-
-    <h2>Kategorie:</h2>
-    <ul>
-        {% for categorie in all_categories %}
-            <li>{{ categorie.name }}</li> <!-- Oprava jména proměnné -->
-        {% endfor %}
-    </ul>
 
     <h2>Produkty:</h2>
     <ul>
