@@ -2,12 +2,12 @@
 
     {% block content %}
     <h1>Produkty</h1>
-    <p>Zde múžete pořídit vše na kempování.</p>
+    <p>V produktech můžete najít všechny položky, které aktuálně nabízime k vaší spokojenosti.</p>
 
-    <h2>Produkty:</h2>
+    <h2>Co můžeme nabídnout:</h2>
     <ul>
         {% for product in all_products %}
-            <li>{{ product.category_ID}} -{{product.products_of_categories}} -{{product.name}}</li> <!-- Oprava jména proměnné -->
+            <li>{{ product.category_ID}} / {{product.products_of_categories}} / {{product.name}}</li> <!-- Oprava jména proměnné -->
         {% endfor %}
     </ul>
 
