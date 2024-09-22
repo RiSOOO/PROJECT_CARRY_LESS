@@ -27,5 +27,6 @@ urlpatterns = [
     path('', MainPageView.as_view(), name='main'),
     path('eshop/', MainPageView.as_view(), name='main'),
     path('kategorie/', CategoriesView.as_view(), name='kategorie'),
-    path('produkty/', ProductsView.as_view(), name='produkty')
+    path('produkty/', ProductsView.as_view(), name='produkty'),
+
 ]
