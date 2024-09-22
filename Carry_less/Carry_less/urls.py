@@ -21,14 +21,14 @@ from viewer.models import Product
 
 admin.site.register(Categorie)
 admin.site.register(Product)
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', MainPageView.as_view(), name='main'),
     path('eshop/', MainPageView.as_view(), name='main'),
     path('kategorie/', CategoriesView.as_view(), name='kategorie'),
+    path('', MainPageView.as_view(), name='main'),
+    path('eshop/', MainPageView.as_view(), name='main'),
+    path('kategorie/', CategoriesView.as_view(), name='kategorie'),
     path('produkty/', ProductsView.as_view(), name='produkty'),
-    path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls'))  # Přidání cesty k autentizaci,
-
 ]
