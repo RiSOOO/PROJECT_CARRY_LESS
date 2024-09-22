@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
+from django.contrib.auth.forms import AuthenticationForm
 
 from viewer.models import Categorie
 from viewer.models import Product
@@ -25,7 +26,5 @@ class ProductsView(TemplateView):
     "all_products": Product.objects.all()
 
     }
-
-
 
 

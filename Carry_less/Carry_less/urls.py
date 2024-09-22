@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from viewer.views import MainPageView, CategoriesView, ProductsView
+from viewer.views import MainPageView, CategoriesView, ProductsView, AuthenticationForm
 from viewer.models import Categorie
 from viewer.models import Product
 
@@ -30,5 +30,8 @@ urlpatterns = [
     path('eshop/', MainPageView.as_view(), name='main'),
     path('kategorie/', CategoriesView.as_view(), name='kategorie'),
     path('produkty/', ProductsView.as_view(), name='produkty'),
-    path('accounts/', include('accounts.urls'))  # Přidání cesty k autentizaci,
+    path('accounts/', include('accounts.urls')), # Přidání cesty k autentizaci
+
+
+
 ]
