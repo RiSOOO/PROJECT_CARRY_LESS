@@ -36,4 +36,5 @@ urlpatterns = [
     path('produkty/create/', ProductsCreateView.as_view(), name='create_product'),
 
 
+
 ]
