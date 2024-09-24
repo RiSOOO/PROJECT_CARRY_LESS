@@ -34,12 +34,12 @@ class ProductsView(TemplateView):
 class ProductsCreateView(CreateView):
   template_name = 'form.html'
   form_class = ProductsForm
-  success_url = reverse_lazy("products")
+  success_url = reverse_lazy("produkty")
 
 class ProductsUpdateView(UpdateView):
   template_name = 'form.html'
   form_class = ProductsForm
-  success_url = reverse_lazy("products")
+  success_url = reverse_lazy("produkty")
 
 
 
