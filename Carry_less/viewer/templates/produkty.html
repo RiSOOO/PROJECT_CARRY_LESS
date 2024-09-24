@@ -1,17 +1,19 @@
- {% extends 'base.html' %}
+{% extends 'base.html' %}
 
-    {% block content %}
+{% block content %}
     <h1>Produkty</h1>
-    <p>V produktech můžete najít všechny položky, které aktuálně nabízime k vaší spokojenosti.</p>
+    <p>V produktech můžete najít všechny položky, které aktuálně nabízíme k vaší spokojenosti.</p>
 
     <h2>Co můžeme nabídnout:</h2>
 
- <a href="{% url 'create_product' %}">Přidat další produkt</a>
+    <a href="{% url 'create_product' %}">Přidat další produkt</a>
 
     <ul>
         {% for product in all_products %}
-            <li>{{ product.category_ID}} / {{product.products_of_categories}} / {{product.name}}</li> <!-- Oprava jména proměnné -->
+            <li>{{ product.category_ID }} / {{ product.products_of_categories }} / {{ product.name }}</li>
+
+            <a href="{% url 'update_product' product.pk %}">Úprava produktu</a>
         {% endfor %}
     </ul>
 
-     {% endblock %}
+{% endblock %}

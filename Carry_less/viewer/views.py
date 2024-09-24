@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView, CreateView
+from django.views.generic import TemplateView, CreateView, UpdateView
 from django.contrib.auth.forms import AuthenticationForm
 
 from viewer.models import Categorie
@@ -23,6 +23,7 @@ class CategoriesView(TemplateView):
 
     }
 
+
 class ProductsView(TemplateView):
     template_name = "produkty.html"
     extra_context = {
@@ -31,6 +32,11 @@ class ProductsView(TemplateView):
     }
 
 class ProductsCreateView(CreateView):
+  template_name = 'form.html'
+  form_class = ProductsForm
+  success_url = reverse_lazy("products")
+
+class ProductsUpdateView(UpdateView):
   template_name = 'form.html'
   form_class = ProductsForm
   success_url = reverse_lazy("products")

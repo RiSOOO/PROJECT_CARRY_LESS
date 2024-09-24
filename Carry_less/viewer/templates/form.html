@@ -3,9 +3,10 @@
     {% block content %}
 
     <h1>Přidat další produkt</h1>
-
+    <form method="POST">
         {% csrf_token %}
         <table>{{ form}}</table>
         <input type="submit">
+    </form>
+    {% endblock %}
 
-        {% endblock %}
