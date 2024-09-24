@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView, CreateView, UpdateView
+from django.views.generic import TemplateView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.forms import AuthenticationForm
 
 from viewer.models import Categorie
@@ -41,6 +41,11 @@ class ProductsUpdateView(UpdateView):
   template_name = 'form.html'
   model = Product
   form_class = ProductsForm
+  success_url = reverse_lazy("produkty")
+
+class ProductsDeleteView(DeleteView):
+  template_name = 'product_confirm_delete.html'
+  model = Product
   success_url = reverse_lazy("produkty")
 
 

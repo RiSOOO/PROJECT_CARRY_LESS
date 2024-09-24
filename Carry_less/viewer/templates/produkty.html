@@ -13,6 +13,8 @@
             <li>{{ product.category_ID }} / {{ product.products_of_categories }} / {{ product.name }}</li>
 
             <a href="{% url 'update_product' product.pk %}">Úprava produktu</a>
+            <a href="{% url 'delete_product' product.pk %}">Smazat produkt</a>
+
         {% endfor %}
     </ul>
 
