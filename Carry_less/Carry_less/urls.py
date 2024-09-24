@@ -19,9 +19,12 @@ from viewer.views import MainPageView, CategoriesView, ProductsView, Authenticat
 
 from viewer.models import Categorie
 from viewer.models import Product
+from viewer.models import ProductFeature
 
 admin.site.register(Categorie)
 admin.site.register(Product)
+admin.site.register(ProductFeature)
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', MainPageView.as_view(), name='main'),

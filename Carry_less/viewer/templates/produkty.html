@@ -11,6 +11,7 @@
     <ul>
         {% for product in all_products %}
             <li>{{ product.category_ID }} / {{ product.products_of_categories }} / {{ product.name }}</li>
+            Benefit {% for feature in product.features.all %}{{feature.feature_name}}{% endfor %}
 
             <a href="{% url 'update_product' product.pk %}">Úprava produktu</a>
             <a href="{% url 'delete_product' product.pk %}">Smazat produkt</a>
