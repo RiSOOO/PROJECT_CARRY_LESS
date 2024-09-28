@@ -21,6 +21,8 @@ from viewer.models import Categorie
 from viewer.models import Product
 from viewer.models import ProductFeature
 
+from django.contrib.auth.views import LogoutView
+
 admin.site.register(Categorie)
 admin.site.register(Product)
 admin.site.register(ProductFeature)
@@ -37,7 +39,9 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('produkty/create/', ProductsCreateView.as_view(), name='create_product'),
     path('produkty/update/<int:pk>/', ProductsUpdateView.as_view(), name='update_product'),
-    path('produkty/delete/<int:pk>/', ProductsDeleteView.as_view(), name='delete_product')
+    path('produkty/delete/<int:pk>/', ProductsDeleteView.as_view(), name='delete_product'),
+
+    path('users/logout/', LogoutView.as_view(), name='logout')
 
 
 ]
