@@ -12,6 +12,13 @@
     <li><a href="{% url 'main' %}">Hlavní stránka</a>
     <li><a href="{% url 'kategorie' %}">kategorie</a>
     <li><a href="{% url 'produkty' %}">produkty</a>
+
+    {% if user.is_authenticated %}
+  <li class="nav-item"><a class="nav-link" href=""> Logout - {{user.username}}</a></li>
+     {% else %}
+    <li class="nav-item"><a class="nav-link" href=""> Logout - {{user.username}}</a></li>
+
+     {% endif %}
 </ul>
 
 {% block content %}
