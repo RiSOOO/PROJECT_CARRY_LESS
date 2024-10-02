@@ -1,4 +1,4 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.shortcuts import render
 from django.views.generic import TemplateView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.forms import AuthenticationForm
@@ -38,11 +38,12 @@ class ProductsCreateView(LoginRequiredMixin,CreateView):
   form_class = ProductsForm
   success_url = reverse_lazy("produkty")
 
-class ProductsUpdateView(UpdateView):
+class ProductsUpdateView(PermissionRequiredMixin, UpdateView):
   template_name = 'form.html'
   model = Product
   form_class = ProductsForm
   success_url = reverse_lazy("produkty")
+  permission_required = 'viewer.change_product'
 
 class ProductsDeleteView(DeleteView):
   template_name = 'product_confirm_delete.html'

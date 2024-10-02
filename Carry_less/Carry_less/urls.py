@@ -43,8 +43,8 @@ urlpatterns = [
     path('produkty/update/<int:pk>/', ProductsUpdateView.as_view(), name='update_product'),
     path('produkty/delete/<int:pk>/', ProductsDeleteView.as_view(), name='delete_product'),
 
-    path('users/login/', LoginView.as_view(), name='login'),
-    path('users/logout/', LogoutView.as_view(), name='logout')
+    path('accounts/login/', LoginView.as_view(), name='login'),
+    path('accounts/logout/', LogoutView.as_view(), name='logout')
 
 
 
