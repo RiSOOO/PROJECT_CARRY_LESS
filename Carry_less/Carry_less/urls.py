@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from viewer.views import MainPageView, CategoriesView, ProductsView, AuthenticationForm, ProductsCreateView, ProductsUpdateView, ProductsDeleteView
+from viewer.views import MainPageView, CategoriesView, ProductsView, AuthenticationForm, ProductsCreateView
+from viewer.views import ProductsUpdateView, ProductsDeleteView
 
 from viewer.models import Categorie
 from viewer.models import Product
