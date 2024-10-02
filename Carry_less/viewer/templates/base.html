@@ -14,7 +14,10 @@
     <li><a href="{% url 'produkty' %}">produkty</a>
 
     {% if user.is_authenticated %}
-  <li class="nav-item"><form action= "{% url 'logout' %}" method="POST" >{% csrf_token %}<input type = "submit" value = "Logout {{user.username}}"></form></li>
+    <li class="nav-item"><a class="nav-link" href="{% url 'userpage' %}">Uživatel: {{user.username}}</a></li>
+
+  <li class="nav-item"><form action= "{% url 'logout' %}" method="POST" >
+    {% csrf_token %}<input type = "submit" value = "Logout {{user.username}}"></form></li>
 
      {% else %}
 

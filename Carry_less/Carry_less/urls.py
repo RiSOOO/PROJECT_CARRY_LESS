@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from viewer.views import MainPageView, CategoriesView, ProductsView, AuthenticationForm, ProductsCreateView
-from viewer.views import ProductsUpdateView, ProductsDeleteView
+from viewer.views import ProductsUpdateView, ProductsDeleteView, UserView
 
 from viewer.models import Categorie
 from viewer.models import Product
@@ -44,7 +44,8 @@ urlpatterns = [
     path('produkty/delete/<int:pk>/', ProductsDeleteView.as_view(), name='delete_product'),
 
     path('accounts/login/', LoginView.as_view(), name='login'),
-    path('accounts/logout/', LogoutView.as_view(), name='logout')
+    path('accounts/logout/', LogoutView.as_view(), name='logout'),
+    path('userpage/', UserView.as_view(), name='userpage')
 
 
 

@@ -50,6 +50,9 @@ class ProductsDeleteView(DeleteView):
   model = Product
   success_url = reverse_lazy("produkty")
 
+class UserView(TemplateView):
+  template_name = "user.html"
+
 
 
 
