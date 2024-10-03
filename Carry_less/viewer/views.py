@@ -45,10 +45,11 @@ class ProductsUpdateView(PermissionRequiredMixin, UpdateView):
   success_url = reverse_lazy("produkty")
   permission_required = 'viewer.change_product'
 
-class ProductsDeleteView(DeleteView):
+class ProductsDeleteView(PermissionRequiredMixin, DeleteView):
   template_name = 'product_confirm_delete.html'
   model = Product
   success_url = reverse_lazy("produkty")
+  permission_required = 'viewer.delete_product'
 
 class UserView(TemplateView):
   template_name = "user.html"

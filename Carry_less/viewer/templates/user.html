@@ -24,4 +24,10 @@
 {{perm.name}} -- {{perm.codename}}<br>
 {% endfor %}
 
+<h2>Groups</h2>
+
+{% for group in user.groups.all %}
+<h3>{{group}}</h3> {% for perm in group.permissions.all %} {{perm.codename}}{%endfor%}<br>
+{% endfor %}
+
 {% endblock %}
