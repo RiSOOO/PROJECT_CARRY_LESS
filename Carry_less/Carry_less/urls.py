@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from viewer.views import MainPageView, CategoriesView, ProductsView, AuthenticationForm, ProductsCreateView
-from viewer.views import ProductsUpdateView, ProductsDeleteView, UserView
+from viewer.views import ProductsUpdateView, ProductsDeleteView, UserView, SignUpView
 
 from viewer.models import Categorie
 from viewer.models import Product
@@ -45,7 +45,8 @@ urlpatterns = [
 
     path('accounts/login/', LoginView.as_view(), name='login'),
     path('accounts/logout/', LogoutView.as_view(), name='logout'),
-    path('userpage/', UserView.as_view(), name='userpage')
+    path('userpage/', UserView.as_view(), name='userpage'),
+    path('accounts/register/', SignUpView.as_view(), name='registration')
 
 
 

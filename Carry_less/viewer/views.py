@@ -2,6 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMix
 from django.shortcuts import render
 from django.views.generic import TemplateView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import (UserCreationForm)
 
 from viewer.models import Categorie
 from viewer.models import Product
@@ -54,7 +55,10 @@ class ProductsDeleteView(PermissionRequiredMixin, DeleteView):
 class UserView(TemplateView):
   template_name = "user.html"
 
-
+class SignUpView(CreateView):
+  template_name = 'form.html'
+  form_class = UserCreationForm
+  success_url = reverse_lazy('login')
 
 
 

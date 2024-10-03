@@ -6,5 +6,7 @@ class ProductsForm(ModelForm):
         model = Product
         fields = '__all__'
 
+
+
      
 
