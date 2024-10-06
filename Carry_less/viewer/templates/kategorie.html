@@ -18,4 +18,12 @@
         {% endif %}
     </ul>
 
-     {% endblock %}
+    <h2>Nalezené produkty</h2>
+    <ul>
+         {% for product in products %}
+        <li>
+            {{product.name}}
+        </li>
+         {% endfor %}
+    </ul>
+ {% endblock %}

@@ -26,7 +26,8 @@ class CategoriesView(TemplateView):
             }
         else:
             extra_context={
-                "category": Categorie.objects.get(id=category_id)
+                "category": Categorie.objects.get(id=category_id),
+                "products": Product.objects.filter(products_of_categories=category_id)
             }
         return render(request,"kategorie.html",extra_context)
 
