@@ -1,14 +1,12 @@
+from django.contrib.auth.forms import (UserCreationForm)
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views.generic import TemplateView, CreateView, UpdateView, DeleteView
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth.forms import (UserCreationForm)
-
+from viewer.forms import ProductsForm
 from viewer.models import Categorie
 from viewer.models import Product
 
-from django.urls import reverse_lazy
-from viewer.forms import ProductsForm
 
 class MainPageView(TemplateView):
     template_name = 'main.html'
@@ -19,12 +17,18 @@ class MainPageView(TemplateView):
     }
 
 class CategoriesView(TemplateView):
-    template_name = "kategorie.html"
-    extra_context = {
-    "all_categories" : Categorie.objects.all()
+    def get(self,request,*args,**kwargs):
+        category_id=request.GET.get("id")
 
-    }
-
+        if(category_id==None):
+            extra_context = {
+                "all_categories": Categorie.objects.all()
+            }
+        else:
+            extra_context={
+                "category": Categorie.objects.get(id=category_id)
+            }
+        return render(request,"kategorie.html",extra_context)
 
 class ProductsView(TemplateView):
     template_name = "produkty.html"
