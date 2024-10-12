@@ -69,5 +69,21 @@ class SignUpView(CreateView):
 
 
 
+class ProductList(TemplateView):
+    products = Product.objects.all()
+    template_name = "producst_list.html"
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['products'] = Product.objects.all()  # Zde přidáme seznam produktů do kontextu
+        return context
+
+
+"""class ViewCart(TemplateView):
+    cart_items = CartItem.objects.filter(user=request.user)
+    total_price = sum(item.product.price * item.quantity for item in cart_items)
+    return render(request=request, template_name=="cart.html", context={'cart_items': cart_items, 'total_price': total_price})"""
+
+
+
 
 
