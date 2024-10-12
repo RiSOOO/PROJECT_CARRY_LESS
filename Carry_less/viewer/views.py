@@ -6,6 +6,8 @@ from django.views.generic import TemplateView, CreateView, UpdateView, DeleteVie
 from viewer.forms import ProductsForm
 from viewer.models import Categorie
 from viewer.models import Product
+from viewer.models import CartItem
+from django.contrib.auth.models import User
 
 
 class MainPageView(TemplateView):
