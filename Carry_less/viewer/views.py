@@ -111,7 +111,21 @@ class AddToCartView(View):
         # Přesměrování na stránku košíku po přidání produktu
         return redirect('ViewCart')  # Tento název URL musí odpovídat cestě k ViewCart
 
-
+class RemoveFromCartView(LoginRequiredMixin,View):
+    def get(self, request, *args, **kwargs):
+        user = request.user
+        product_id = kwargs.get('pk')
+        product = get_object_or_404(Product, pk=product_id)
+        cart_item = CartItem.objects.get(
+            product=product,
+            user=user
+        )
+        if cart_item.quantity > 1:
+            cart_item.quantity -= 1
+            cart_item.save()
+        else:
+            cart_item.delete()
+        return redirect('ViewCart')
 
 
 
