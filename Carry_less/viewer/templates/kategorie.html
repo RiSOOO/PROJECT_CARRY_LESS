@@ -13,7 +13,7 @@
     <ul>
         {% if all_categories != None %}
             {% for categorie in all_categories %}
-                <li>{{ categorie.name }}</li> <!-- Oprava jména proměnné -->
+                <li><a href="/kategorie?id={{categorie.pk}}">{{ categorie.name }}</a></li> <!-- Oprava jména proměnné -->
             {% endfor %}
         {% endif %}
     </ul>

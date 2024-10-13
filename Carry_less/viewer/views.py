@@ -1,17 +1,14 @@
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import (UserCreationForm)
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.shortcuts import redirect, get_object_or_404
 from django.shortcuts import render
 from django.urls import reverse_lazy
+from django.views import View
 from django.views.generic import TemplateView, CreateView, UpdateView, DeleteView
 from viewer.forms import ProductsForm
+from viewer.models import CartItem
 from viewer.models import Categorie
 from viewer.models import Product
-from viewer.models import CartItem
-from django.contrib.auth.models import User
-
-from django.views import View
-from django.shortcuts import redirect, get_object_or_404
 
 
 class MainPageView(TemplateView):
@@ -32,6 +29,7 @@ class CategoriesView(LoginRequiredMixin, TemplateView):
             }
         else:
             extra_context={
+                "all_categories": Categorie.objects.all(),
                 "category": Categorie.objects.get(id=category_id),
                 "products": Product.objects.filter(products_of_categories=category_id)
             }
