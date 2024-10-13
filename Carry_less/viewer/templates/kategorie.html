@@ -1,21 +1,22 @@
  {% extends 'base.html' %}
 
-    {% block content %}
+ {% block content %}
+
     {% if category != None %}
         <h1>Kategorie {{ category.name }}</h1>
     {% else %}
         <h1>Kategorie</h1>
     {% endif %}
 
-    <p>Kategorie produktů:</p>
 
 
-    <ul>
-        {% if all_categories != None %}
+    {% if all_categories != None %}
+        <p>Kategorie produktů:</p>
+        <ul>
             {% for categorie in all_categories %}
                 <li>{{ categorie.name }}</li> <!-- Oprava jména proměnné -->
             {% endfor %}
-        {% endif %}
-    </ul>
+        </ul>
+    {% endif %}
 
-     {% endblock %}
+{% endblock %}
