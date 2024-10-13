@@ -21,7 +21,7 @@ from viewer.models import Product, CartItem
 from viewer.models import ProductFeature
 from viewer.views import MainPageView, CategoriesView, ProductsView, ProductsCreateView
 from viewer.views import ProductsUpdateView, ProductsDeleteView, UserView, SignUpView
-from viewer.views import ProductList, ViewCart
+from viewer.views import ViewCart, AddToCartView
 
 admin.site.register(Categorie)
 admin.site.register(Product)
@@ -47,8 +47,7 @@ urlpatterns = [
     path('accounts/register/', SignUpView.as_view(), name='registration'),
 
 
-    path('products/', ProductList.as_view(), name='product_list'),
-    path('cart/', ViewCart.as_view(), name='view_cart')
-
+    path('cart/', ViewCart.as_view(), name='ViewCart'),
+    path('add-to-cart/<int:pk>/', AddToCartView.as_view(), name='add_to_cart')
 
 ]

@@ -9,6 +9,9 @@ from viewer.models import Product
 from viewer.models import CartItem
 from django.contrib.auth.models import User
 
+from django.views import View
+from django.shortcuts import redirect, get_object_or_404
+
 
 class MainPageView(TemplateView):
     template_name = 'main.html'
@@ -69,28 +72,44 @@ class SignUpView(CreateView):
 
 
 
-class ProductList(TemplateView):
-    products = Product.objects.all()
-    template_name = "producst_list.html"
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['products'] = Product.objects.all()  # Zde přidáme seznam produktů do kontextu
-        return context
-
 
 class ViewCart(TemplateView):
     template_name = 'cart.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        cart_items = self.request.session.get('cart', [])
+        cart_items = CartItem.objects.filter(user=self.request.user)
         context['cart_items'] = cart_items
 
         # Výpočet celkové ceny
-        total_price = sum(item['price'] * item['quantity'] for item in cart_items)
+        total_price = sum(item.total_price() for item in cart_items)
         context['total_price'] = total_price
 
         return context
+
+class AddToCartView(View):
+    def post(self, request, *args, **kwargs):
+
+        user = request.user
+
+        # Získání produktu na základě předaného ID (pk)
+        product_id = kwargs.get('pk')
+        product = get_object_or_404(Product, pk=product_id)
+
+        # Získání nebo vytvoření položky v košíku
+        cart_item, created = CartItem.objects.get_or_create(
+            product=product,
+            user=user,
+            defaults={'quantity': 1}
+        )
+
+        # Pokud už existuje, zvýšíme množství
+        if not created:
+            cart_item.quantity += 1
+            cart_item.save()
+
+        # Přesměrování na stránku košíku po přidání produktu
+        return redirect('ViewCart')  # Tento název URL musí odpovídat cestě k ViewCart
 
 
 
