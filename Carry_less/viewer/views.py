@@ -132,7 +132,10 @@ class CheckoutView(LoginRequiredMixin, View):
     template_name = 'checkout.html'  # Cesta k vaší šabloně pro checkout
 
     def get(self, request, *args, **kwargs):
-        return render(request, self.template_name)
+        logged_in_user = request.user
+        return render(request, self.template_name, context={
+            "name": CartItem.objects.filter(user=logged_in_user)
+        })
 
 
 

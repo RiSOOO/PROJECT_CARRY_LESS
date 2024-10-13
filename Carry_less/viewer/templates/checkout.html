@@ -6,6 +6,12 @@
 <p>Děkujeme, že jste se rozhodli pro nákup u nás!</p>
 <p>Prosím, zkontrolujte své údaje a potvrďte objednávku.</p>
 
+
+
+{% for cart_item in name %}
+{{ cart_item.product.name }} <br>
+{% endfor %}
+
 <!-- Zde můžete přidat formuláře nebo další informace potřebné pro checkout -->
 <form method="POST" action="{ }">  <!-- Vytvořte view pro zpracování objednávky -->
     {% csrf_token %}
