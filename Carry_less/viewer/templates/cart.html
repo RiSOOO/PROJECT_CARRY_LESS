@@ -32,8 +32,8 @@
 
         <p>Total price: {{ total_price }} $</p>
 
-        <a href="{  }">potvrdit a zaplatit</a>
+        <a href="{%url 'checkout'%}">potvrdit a zaplatit</a>
     {% else %}
-        <p>Your cart is empty.</p>
+        <p>Váš košík je prázdný.</p>
     {% endif %}
 {% endblock %}

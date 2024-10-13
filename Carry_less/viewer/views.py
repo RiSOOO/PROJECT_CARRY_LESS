@@ -128,6 +128,14 @@ class RemoveFromCartView(LoginRequiredMixin,View):
             cart_item.delete()
         return redirect('ViewCart')
 
+class CheckoutView(LoginRequiredMixin, View):
+    template_name = 'checkout.html'  # Cesta k vaší šabloně pro checkout
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
+
+
+
 
 
 

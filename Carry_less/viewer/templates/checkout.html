@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Potvrzení objednávky</h1>
+
+<p>Děkujeme, že jste se rozhodli pro nákup u nás!</p>
+<p>Prosím, zkontrolujte své údaje a potvrďte objednávku.</p>
+
+<!-- Zde můžete přidat formuláře nebo další informace potřebné pro checkout -->
+<form method="POST" action="{ }">  <!-- Vytvořte view pro zpracování objednávky -->
+    {% csrf_token %}
+    <button type="submit">dokončit a smazat košík</button>
+</form>
+{% endblock %}
