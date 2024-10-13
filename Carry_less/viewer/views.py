@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import (UserCreationForm)
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.shortcuts import render
@@ -21,7 +22,7 @@ class MainPageView(TemplateView):
 
     }
 
-class CategoriesView(TemplateView):
+class CategoriesView(LoginRequiredMixin, TemplateView):
     def get(self,request,*args,**kwargs):
         category_id=request.GET.get("id")
 
@@ -40,8 +41,8 @@ class ProductsView(TemplateView):
     template_name = "produkty.html"
     extra_context = {
     "all_products": Product.objects.all()
-
     }
+    permission_required = "admin.editor"
 
 class ProductsCreateView(LoginRequiredMixin,CreateView):
   template_name = 'form.html'
@@ -73,7 +74,7 @@ class SignUpView(CreateView):
 
 
 
-class ViewCart(TemplateView):
+class ViewCart(LoginRequiredMixin, TemplateView):
     template_name = 'cart.html'
 
     def get_context_data(self, **kwargs):

@@ -20,7 +20,7 @@
                     <td>{{ item.quantity }}</td>
                     <td>{{ item.product.price }} $</td>
                     <td>
-                        <form method="POST" action="{% url 'remove_from_cart' item.product.id %}">
+                        <form method="get" action="{% url 'remove_from_cart' item.product.id %}">
                             {% csrf_token %}
                             <button type="submit">odebrat produkt z košíku</button>
                         </form>
