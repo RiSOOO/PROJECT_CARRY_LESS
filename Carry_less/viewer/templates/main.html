@@ -6,18 +6,6 @@
     <p>Zde můžete pořídit vše na kempování.</p>
 
 
-    <h2>Kategorie:</h2>
-    <ul>
-        {% for categorie in all_categories %}
-            <li>{{ categorie.name }}</li> <!-- Oprava jména proměnné -->
-        {% endfor %}
-    </ul>
 
-    <h2>Produkty:</h2>
-    <ul>
-        {% for product in all_products %}
-            <li>{{ product.category_ID}} / {{product.products_of_categories}} / {{product.name}}</li> <!-- Oprava jména proměnné -->
-        {% endfor %}
-    </ul>
 
      {% endblock %}

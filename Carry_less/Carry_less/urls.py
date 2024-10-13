@@ -17,14 +17,16 @@ from django.contrib import admin
 from django.contrib.auth.views import LogoutView, LoginView
 from django.urls import path, include
 from viewer.models import Categorie
-from viewer.models import Product
+from viewer.models import Product, CartItem
 from viewer.models import ProductFeature
 from viewer.views import MainPageView, CategoriesView, ProductsView, ProductsCreateView
 from viewer.views import ProductsUpdateView, ProductsDeleteView, UserView, SignUpView
+from viewer.views import ViewCart, AddToCartView
 
 admin.site.register(Categorie)
 admin.site.register(Product)
 admin.site.register(ProductFeature)
+admin.site.register(CartItem)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -42,8 +44,10 @@ urlpatterns = [
     path('accounts/login/', LoginView.as_view(), name='login'),
     path('accounts/logout/', LogoutView.as_view(), name='logout'),
     path('userpage/', UserView.as_view(), name='userpage'),
-    path('accounts/register/', SignUpView.as_view(), name='registration')
+    path('accounts/register/', SignUpView.as_view(), name='registration'),
 
 
+    path('cart/', ViewCart.as_view(), name='ViewCart'),
+    path('add-to-cart/<int:pk>/', AddToCartView.as_view(), name='add_to_cart')
 
 ]

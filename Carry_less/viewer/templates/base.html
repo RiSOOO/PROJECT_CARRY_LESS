@@ -12,6 +12,7 @@
     <li><a href="{% url 'main' %}">Hlavní stránka</a>
     <li><a href="{% url 'kategorie' %}">kategorie</a>
     <li><a href="{% url 'produkty' %}">produkty</a>
+    <li><a href="{% url 'ViewCart' %}">Košík</a>
 
     {% if user.is_authenticated %}
     <li class="nav-item"><a class="nav-link" href="{% url 'userpage' %}">Uživatel: {{user.username}}</a></li>
@@ -21,6 +22,7 @@
 
      {% else %}
 
+    <li class="nav-item"><a class="nav-link" href="{% url 'registration' %}">Register</a></li>
     <li class="nav-item"><a class="nav-link" href="{% url 'login' %}"> Login </a></li>
 
      {% endif %}

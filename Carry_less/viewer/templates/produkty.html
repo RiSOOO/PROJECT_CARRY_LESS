@@ -6,16 +6,26 @@
 
     <h2>Co můžeme nabídnout:</h2>
 
-     <a href="{% url 'create_product' %}">Přidat další produkt</a>
+    <a href="{% url 'create_product' %}">Přidat další produkt</a>
 
     <ul>
         {% for product in all_products %}
-            <li>{{ product.category_ID }} / {{ product.products_of_categories }} / {{ product.name }}</li>
-            Benefit {% for feature in product.features.all %}{{feature.feature_name}}{% endfor %}
+            <li>
+                {{ product.category_ID }} / {{ product.products_of_categories }} / {{ product.name }} / {{ product.price }} Kč
+                <br>
+                Benefit {% for feature in product.features.all %}{{ feature.feature_name }}{% endfor %}
+                <br>
 
-            <a href="{% url 'update_product' product.pk %}">Úprava produktu</a>
-            <a href="{% url 'delete_product' product.pk %}">Smazat produkt</a>
+                <!-- Odkazy na úpravu a smazání produktu -->
+                <a href="{% url 'update_product' product.pk %}">Úprava produktu</a>
+                <a href="{% url 'delete_product' product.pk %}">Smazat produkt</a>
 
+                <!-- Formulář pro přidání produktu do košíku -->
+                <form action="{% url 'add_to_cart' product.pk %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit">Přidat do košíku</button>
+                </form>
+            </li>
         {% endfor %}
     </ul>
 
