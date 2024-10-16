@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.contrib.auth.views import LogoutView, LoginView
+from django.contrib.auth.models import Permission
 from django.urls import path, include
 from viewer.models import Categorie
 from viewer.models import Product, CartItem
@@ -29,6 +30,7 @@ admin.site.register(Categorie)
 admin.site.register(Product)
 admin.site.register(ProductFeature)
 admin.site.register(CartItem)
+admin.site.register(Permission)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

@@ -38,12 +38,12 @@ class CategoriesView(LoginRequiredMixin, TemplateView):
         return render(request,"kategorie.html",extra_context)
 
 
-class ProductsView(TemplateView):
+class ProductsView(PermissionRequiredMixin, TemplateView):
     template_name = "produkty.html"
     extra_context = {
     "all_products": Product.objects.all()
     }
-    permission_required = "admin.editor"
+    permission_required = "viewer.view_productfeature"
 
 
 class ProductsCreateView(LoginRequiredMixin,CreateView):
