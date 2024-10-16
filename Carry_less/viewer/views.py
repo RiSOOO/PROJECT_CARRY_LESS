@@ -10,18 +10,20 @@ from viewer.models import CartItem
 from viewer.models import Categorie
 from viewer.models import Product
 
+from viewer.models import Invoice
+
 
 class MainPageView(TemplateView):
     template_name = 'main.html'
     extra_context = {
     "all_categories": Categorie.objects.all(),
     "all_products": Product.objects.all()
-
     }
 
+
 class CategoriesView(LoginRequiredMixin, TemplateView):
-    def get(self,request,*args,**kwargs):
-        category_id=request.GET.get("id")
+    def get(self, request, *args, **kwargs):
+        category_id = request.GET.get("id")
 
         if(category_id==None):
             extra_context = {
@@ -35,6 +37,7 @@ class CategoriesView(LoginRequiredMixin, TemplateView):
             }
         return render(request,"kategorie.html",extra_context)
 
+
 class ProductsView(TemplateView):
     template_name = "produkty.html"
     extra_context = {
@@ -42,11 +45,13 @@ class ProductsView(TemplateView):
     }
     permission_required = "admin.editor"
 
+
 class ProductsCreateView(LoginRequiredMixin,CreateView):
   template_name = 'form.html'
   model = Product
   form_class = ProductsForm
   success_url = reverse_lazy("produkty")
+
 
 class ProductsUpdateView(PermissionRequiredMixin, UpdateView):
   template_name = 'form.html'
@@ -55,21 +60,22 @@ class ProductsUpdateView(PermissionRequiredMixin, UpdateView):
   success_url = reverse_lazy("produkty")
   permission_required = 'viewer.change_product'
 
+
 class ProductsDeleteView(PermissionRequiredMixin, DeleteView):
   template_name = 'product_confirm_delete.html'
   model = Product
   success_url = reverse_lazy("produkty")
   permission_required = 'viewer.delete_product'
 
+
 class UserView(TemplateView):
   template_name = "user.html"
+
 
 class SignUpView(CreateView):
   template_name = 'form.html'
   form_class = UserCreationForm
   success_url = reverse_lazy('login')
-
-
 
 
 class ViewCart(LoginRequiredMixin, TemplateView):
@@ -85,6 +91,7 @@ class ViewCart(LoginRequiredMixin, TemplateView):
         context['total_price'] = total_price
 
         return context
+
 
 class AddToCartView(View):
     def post(self, request, *args, **kwargs):
@@ -110,6 +117,7 @@ class AddToCartView(View):
         # Přesměrování na stránku košíku po přidání produktu
         return redirect('ViewCart')  # Tento název URL musí odpovídat cestě k ViewCart
 
+
 class RemoveFromCartView(LoginRequiredMixin,View):
     def get(self, request, *args, **kwargs):
         user = request.user
@@ -126,6 +134,7 @@ class RemoveFromCartView(LoginRequiredMixin,View):
             cart_item.delete()
         return redirect('ViewCart')
 
+
 class CheckoutView(LoginRequiredMixin, View):
     template_name = 'checkout.html'  # Cesta k vaší šabloně pro checkout
 
@@ -134,6 +143,21 @@ class CheckoutView(LoginRequiredMixin, View):
         return render(request, self.template_name, context={
             "name": CartItem.objects.filter(user=logged_in_user)
         })
+
+
+
+class InvoiceView(LoginRequiredMixin, View):
+    template_name = 'invoice.html'  # Cesta k vaší šabloně pro checkout
+
+    def get(self, request, *args, **kwargs):
+        logged_in_user = request.user
+        return render(request, self.template_name, context={
+            "name": Invoice.objects.filter(user=logged_in_user)
+        })
+
+
+
+
 
 
 

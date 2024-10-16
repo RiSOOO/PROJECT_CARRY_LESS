@@ -22,7 +22,7 @@ from viewer.models import ProductFeature
 from viewer.views import MainPageView, CategoriesView, ProductsView, ProductsCreateView
 from viewer.views import ProductsUpdateView, ProductsDeleteView, UserView, SignUpView
 from viewer.views import ViewCart, AddToCartView, RemoveFromCartView
-from viewer.views import CheckoutView
+from viewer.views import CheckoutView, InvoiceView
 
 
 admin.site.register(Categorie)
@@ -55,5 +55,6 @@ urlpatterns = [
 
 
     path('checkout/', CheckoutView.as_view(), name='checkout'),
+    path('invoice/', InvoiceView.as_view(), name='invoice'),
 
 ]
