@@ -9,11 +9,10 @@
 
     <p>Kategorie produktů:</p>
 
-
     <ul>
         {% if all_categories != None %}
             {% for categorie in all_categories %}
-                <li><a href="/kategorie?id={{categorie.pk}}">{{ categorie.name }}</a></li> <!-- Oprava jména proměnné -->
+                <a href="/kategorie?id={{categorie.pk}}" class="btn btn-dark" >{{ categorie.name }}</a>
             {% endfor %}
         {% endif %}
     </ul>
