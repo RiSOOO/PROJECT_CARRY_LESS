@@ -1,5 +1,6 @@
 from django.contrib.auth.forms import (UserCreationForm)
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.db.models import Sum
 from django.shortcuts import redirect, get_object_or_404
 from django.shortcuts import render
 from django.urls import reverse_lazy
@@ -8,9 +9,8 @@ from django.views.generic import TemplateView, CreateView, UpdateView, DeleteVie
 from viewer.forms import ProductsForm
 from viewer.models import CartItem
 from viewer.models import Categorie
-from viewer.models import Product
-
 from viewer.models import Invoice
+from viewer.models import Product
 
 
 class MainPageView(TemplateView):
@@ -141,7 +141,9 @@ class CheckoutView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         logged_in_user = request.user
         return render(request, self.template_name, context={
-            "name": CartItem.objects.filter(user=logged_in_user)
+            "cart_items": CartItem.objects.filter(user=logged_in_user),
+            "total_price": CartItem.objects.filter(user=logged_in_user).aggregate(sum=Sum('product__price'))['sum']
+
         })
 
 
