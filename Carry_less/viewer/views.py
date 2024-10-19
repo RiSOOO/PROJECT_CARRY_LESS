@@ -2,7 +2,7 @@ from django.contrib.auth.forms import (UserCreationForm)
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.db.models import Sum
 from django.shortcuts import redirect, get_object_or_404
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import TemplateView, CreateView, UpdateView, DeleteView
@@ -135,17 +135,28 @@ class RemoveFromCartView(LoginRequiredMixin,View):
         return redirect('ViewCart')
 
 
-class CheckoutView(LoginRequiredMixin, View):
-    template_name = 'checkout.html'  # Cesta k vaší šabloně pro checkout
-
-    def get(self, request, *args, **kwargs):
-        logged_in_user = request.user
-        return render(request, self.template_name, context={
-            "cart_items": CartItem.objects.filter(user=logged_in_user),
-            "total_price": CartItem.objects.filter(user=logged_in_user).aggregate(sum=Sum('product__price'))['sum']
-
+class CheckoutView(View):
+    def get(self, request):
+        # Vykreslení stránky checkout, pokud je požadavek typu GET
+        cart_items = CartItem.objects.filter(user=request.user)
+        total_price = sum(item.product.price for item in cart_items)
+        return render(request, 'checkout.html', {
+            'cart_items': cart_items,
+            'total_price': total_price,
         })
+    def post(self, request):
+        # Zpracování checkoutu a výpočet celkové ceny
+        cart_items = CartItem.objects.filter(user=request.user)  # Příklad dotazu
+        total_price = sum(item.product.price for item in cart_items)
 
+        # Vymazání košíku, pokud je to potřeba
+        cart_items.delete()
+
+        # Vykreslení stránky faktury
+        return render(request, 'invoice.html', {
+            'cart_items': cart_items,
+            'total_price': total_price,
+        })
 
 
 class InvoiceView(LoginRequiredMixin, View):
@@ -156,6 +167,7 @@ class InvoiceView(LoginRequiredMixin, View):
         return render(request, self.template_name, context={
             "name": Invoice.objects.filter(user=logged_in_user)
         })
+
 
 
 

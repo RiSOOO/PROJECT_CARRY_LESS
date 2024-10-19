@@ -1,6 +1,8 @@
 from django.urls import reverse
 from django.test import TestCase
 from viewer.models import Product, CartItem, User
+from django.contrib.auth.models import User
+from django.contrib.auth.base_user import AbstractBaseUser
 
 
 class ProductTest(TestCase):

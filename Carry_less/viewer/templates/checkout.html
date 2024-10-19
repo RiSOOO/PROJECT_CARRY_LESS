@@ -24,7 +24,7 @@
 </table>
 
 <!-- Zde můžete přidat formuláře nebo další informace potřebné pro checkout -->
-<form method="POST" action="{% url 'invoice' %}">
+<form method="GET" action="{% url 'invoice' %}">
     {% csrf_token %}
     <p>Celková cena objednávky je: {{ total_price }} Kč</p>
     <button type="submit">dokončit a smazat košík</button>
