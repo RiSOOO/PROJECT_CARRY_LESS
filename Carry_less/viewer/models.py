@@ -42,6 +42,7 @@ class CartItem(models.Model):
     def total_price(self):
         return self.quantity * self.product.price
 
+
 class Invoice(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     text_of_invoice = models.TextField(max_length=2000)

@@ -43,7 +43,7 @@ class ProductsView(PermissionRequiredMixin, TemplateView):
     extra_context = {
     "all_products": Product.objects.all()
     }
-    permission_required = "viewer.view_productfeature"
+    permission_required = "viewer.view_product"
 
 
 class ProductsCreateView(LoginRequiredMixin,CreateView):

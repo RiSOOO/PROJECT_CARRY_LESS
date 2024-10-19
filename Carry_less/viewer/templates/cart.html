@@ -18,7 +18,7 @@
                 <tr>
                     <td>{{ item.product.name }}</td>
                     <td>{{ item.quantity }}</td>
-                    <td>{{ item.product.price }} $</td>
+                    <td>{{ item.product.price }} Kč</td>
                     <td>
                         <form method="get" action="{% url 'remove_from_cart' item.product.id %}">
                             {% csrf_token %}
@@ -30,7 +30,7 @@
             </tbody>
         </table>
 
-        <p>Total price: {{ total_price }} $</p>
+        <p>Total price: {{ total_price }} Kč</p>
 
         <a href="{%url 'checkout'%}">potvrdit a zaplatit</a>
     {% else %}
