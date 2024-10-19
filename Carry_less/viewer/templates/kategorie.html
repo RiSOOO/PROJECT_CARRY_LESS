@@ -1,16 +1,28 @@
  {% extends 'base.html' %}
 
     {% block content %}
-    <h1>Kategorie</h1>
-    <p>Kategorie pro lepší orientaci v nákupu:</p>
+    {% if category != None %}
+        <h1>Kategorie {{ category.name }}</h1>
+    {% else %}
+        <h1>Kategorie</h1>
+    {% endif %}
 
-    <h2>Naše portfolio:</h2>
-
+    <p>Kategorie produktů:</p>
 
     <ul>
-        {% for categorie in all_categories %}
-            <li>{{ categorie.name }}</li> <!-- Oprava jména proměnné -->
-        {% endfor %}
+        {% if all_categories != None %}
+            {% for categorie in all_categories %}
+                <a href="/kategorie?id={{categorie.pk}}" class="btn btn-dark" >{{ categorie.name }}</a>
+            {% endfor %}
+        {% endif %}
     </ul>
 
-     {% endblock %}
+    <h2>Nalezené produkty</h2>
+    <ul>
+         {% for product in products %}
+        <li>
+            {{product.name}}
+        </li>
+         {% endfor %}
+    </ul>
+ {% endblock %}

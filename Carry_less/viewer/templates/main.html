@@ -3,21 +3,9 @@
 
     {% block content %}
     <h1>Vítejte na eshopu Carry less!</h1>
-    <p>Zde můžete pořídit vybavení na cestování nalehko .</p>
+    <p>Zde můžete pořídit vše na kempování.</p>
 
 
-    <h2>Kategorie:</h2>
-    <ul>
-        {% for categorie in all_categories %}
-            <li>{{ categorie.name }}</li> <!-- Oprava jména proměnné -->
-        {% endfor %}
-    </ul>
 
-    <h2>Produkty:</h2>
-    <ul>
-        {% for product in all_products %}
-            <li>{{ product.category_ID}} / {{product.products_of_categories}} / {{product.name}}</li> <!-- Oprava jména proměnné -->
-        {% endfor %}
-    </ul>
 
      {% endblock %}
