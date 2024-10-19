@@ -2,6 +2,7 @@ from django.core.exceptions import ValidationError
 from django.forms import ModelForm
 from viewer.models import Product
 
+
 class ProductsForm(ModelForm):
     class Meta:
         model = Product
@@ -18,7 +19,3 @@ class ProductsForm(ModelForm):
         if self.cleaned_data["price"] > 0:
             return self.cleaned_data["price"]
         raise ValidationError("cena musí být větší než nula")
-
-
-     
-

@@ -140,23 +140,15 @@ class CheckoutView(View):
         # Vykreslení stránky checkout, pokud je požadavek typu GET
         cart_items = CartItem.objects.filter(user=request.user)
         total_price = sum(item.product.price for item in cart_items)
+        cart_items.delete()
+
+        # Výpočet celkové ceny
         return render(request, 'checkout.html', {
             'cart_items': cart_items,
             'total_price': total_price,
         })
-    def post(self, request):
-        # Zpracování checkoutu a výpočet celkové ceny
-        cart_items = CartItem.objects.filter(user=request.user)  # Příklad dotazu
-        total_price = sum(item.product.price for item in cart_items)
 
-        # Vymazání košíku, pokud je to potřeba
-        cart_items.delete()
 
-        # Vykreslení stránky faktury
-        return render(request, 'invoice.html', {
-            'cart_items': cart_items,
-            'total_price': total_price,
-        })
 
 
 class InvoiceView(LoginRequiredMixin, View):
