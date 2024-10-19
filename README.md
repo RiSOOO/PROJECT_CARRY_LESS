@@ -6,11 +6,10 @@ Final projekt 2024, Seznam dílčích úkolů
  - [x] Vytvoření základní šablony webu v Django<br>
 - [x] Vytvoření kategorií produktů<br>
  - [x] Přidání konkrétních produktů<br>
-- [ ] Vlastnosti produktů a funkce filtrování(váha, značka, atp)<br>
  - [x] Vytvořit admina<br>
- - [ ] Vytvořit uživatele<br>
- - [ ] Definovat oprávnění admin/uživatel<br>
- - [ ] Přidat další kategorie<br>
- - [ ] Přidat další produkty<br>
+ - [x] Vytvořit uživatele<br>
+ - [x] Definovat oprávnění admin/uživatel<br>
+ - [x] Přidat další kategorie<br>
  - [ ] Vytvořit strom kategorií<br>
- - [ ] Design<br>
+ - [x] Design<br>
+ - [x] validace
