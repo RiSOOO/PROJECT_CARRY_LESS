@@ -87,14 +87,17 @@ class CartTest(TestCase):
         cart_items = CartItem.objects.filter(user=self.user)
         self.assertEqual(cart_items.count(), 0)
 
-
+    #Při seleniu nastavit v Safari:
+    #Otevřete Safari a přejděte do Preferences > Advanced.
+    #Zaškrtněte „Show Develop menu in menu bar“.
+    #V menu Develop vyberte „Allow Remote Automation“.
 
 class MySeleniumTests(LiveServerTestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        # Set up the WebDriver for Safari
-        cls.selenium = webdriver.Safari()  # Change to Safari WebDriver
+        # nastavit WebDriver pro Safari
+        cls.selenium = webdriver.Safari()  # zmena na Safari WebDriver
         cls.selenium.implicitly_wait(10)
         cls.admin_user = User.objects.create_superuser(
             username='admin',
@@ -121,3 +124,4 @@ class MySeleniumTests(LiveServerTestCase):
         time.sleep(2)
         # Test that we successfully logged in (check for a successful redirect or message)
         self.assertIn("Uživatel: admin", self.selenium.page_source)
+
