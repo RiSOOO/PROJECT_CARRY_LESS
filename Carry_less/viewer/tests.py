@@ -4,11 +4,11 @@ from viewer.models import Product, CartItem, User
 from django.contrib.auth.models import User
 from django.contrib.auth.base_user import AbstractBaseUser
 
+
 # selenium test -
 from django.test import LiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-
 
 
 class ProductTest(TestCase):
@@ -87,18 +87,16 @@ class CartTest(TestCase):
         cart_items = CartItem.objects.filter(user=self.user)
         self.assertEqual(cart_items.count(), 0)
 
-    #Při seleniu nastavit v Safari:
-    #Otevřete Safari a přejděte do Preferences > Advanced.
-    #Zaškrtněte „Show Develop menu in menu bar“.
-    #V menu Develop vyberte „Allow Remote Automation“.
 
 class MySeleniumTests(LiveServerTestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        # nastavit WebDriver pro Safari
-        cls.selenium = webdriver.Safari()  # zmena na Safari WebDriver
+        # Nastavení Safari WebDriveru (může být i Chrome, podle potřeby)
+        cls.selenium = webdriver.Safari()  # Nebo použijte webdriver.Chrome() pro Chrome
         cls.selenium.implicitly_wait(10)
+
+        # Vytvoření admin uživatele pro testy
         cls.admin_user = User.objects.create_superuser(
             username='admin',
             password='admin',
@@ -111,17 +109,47 @@ class MySeleniumTests(LiveServerTestCase):
         super().tearDownClass()
 
     def test_login(self):
-        # Access the live server URL
+        # Přejděte na stránku přihlášení
         self.selenium.get(f'{self.live_server_url}/accounts/login/')
-        # Find the username and password input fields and fill them
+
+        # Vyplňte pole pro uživatelské jméno a heslo
         username_input = self.selenium.find_element(By.NAME, "username")
         password_input = self.selenium.find_element(By.NAME, "password")
         username_input.send_keys('admin')
         password_input.send_keys('admin')
-        # Submit the form
+
+        # Odešlete formulář
         self.selenium.find_element(By.XPATH, '//input[@type="submit"]').click()
+
+        # Počkejte krátce pro načtení stránky
         import time
         time.sleep(2)
-        # Test that we successfully logged in (check for a successful redirect or message)
+
+        # Ověření, že přihlášení bylo úspěšné (např. kontrola přítomnosti textu)
         self.assertIn("Uživatel: admin", self.selenium.page_source)
+
+    def test_logout(self):
+        # Přejděte na stránku přihlášení
+        self.selenium.get(f'{self.live_server_url}/accounts/login/')
+
+        # Přihlaste se jako admin
+        username_input = self.selenium.find_element(By.NAME, "username")
+        password_input = self.selenium.find_element(By.NAME, "password")
+        username_input.send_keys('admin')
+        password_input.send_keys('admin')
+
+        # Odešlete formulář pro přihlášení
+        self.selenium.find_element(By.XPATH, '//input[@type="submit"]').click()
+
+        # Přejděte na stránku odhlášení
+        self.selenium.get(f'{self.live_server_url}/accounts/logout/')
+
+        # Počkejte krátce pro načtení stránky
+        import time
+        time.sleep(2)
+
+        # Ověřte, že jste byli odhlášeni (např. kontrola textu na stránce)
+        # Místo 'Bye!' zkontrolujte, co stránka po odhlášení skutečně obsahuje
+        self.assertIn("Vítejte na eshopu Carry less!",
+                      self.selenium.page_source)  # Tento text upravte podle obsahu po odhlášení
 
