@@ -16,8 +16,10 @@ from viewer.models import Product
 class MainPageView(TemplateView):
     template_name = 'main.html'
     extra_context = {
-    "all_categories": Categorie.objects.all(),
-    "all_products": Product.objects.all()
+
+        "all_categories": Categorie.objects.all(),
+        "all_products": Product.objects.all()
+
     }
 
 
@@ -25,7 +27,8 @@ class CategoriesView(LoginRequiredMixin, TemplateView):
     def get(self, request, *args, **kwargs):
         category_id = request.GET.get("id")
 
-        if(category_id==None):
+
+        if(category_id == None):
             extra_context = {
                 "all_categories": Categorie.objects.all()
             }

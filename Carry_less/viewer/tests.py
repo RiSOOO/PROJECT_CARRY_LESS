@@ -5,6 +5,12 @@ from django.contrib.auth.models import User
 from django.contrib.auth.base_user import AbstractBaseUser
 
 
+# selenium test -
+from django.test import LiveServerTestCase
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+
+
 class ProductTest(TestCase):
     def setUp(self):
         # Vytvoření testovacího produktu
@@ -80,3 +86,71 @@ class CartTest(TestCase):
         # Ověření, že košík je prázdný na začátku
         cart_items = CartItem.objects.filter(user=self.user)
         self.assertEqual(cart_items.count(), 0)
+
+
+class MySeleniumTests(LiveServerTestCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        # Nastavení Safari WebDriveru (může být i Chrome, podle potřeby)
+        cls.selenium = webdriver.Chrome()  # Nebo použijte webdriver.Chrome() pro Chrome
+
+        cls.selenium.implicitly_wait(10)
+
+        # Vytvoření admin uživatele pro testy
+        cls.admin_user = User.objects.create_superuser(
+            username='admin',
+            password='admin',
+            email='admin@example.com'
+        )
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.selenium.quit()
+        super().tearDownClass()
+
+    def test_login(self):
+        # Přejděte na stránku přihlášení
+        self.selenium.get(f'{self.live_server_url}/accounts/login/')
+
+        # Vyplňte pole pro uživatelské jméno a heslo
+        username_input = self.selenium.find_element(By.NAME, "username")
+        password_input = self.selenium.find_element(By.NAME, "password")
+        username_input.send_keys('admin')
+        password_input.send_keys('admin')
+
+        # Odešlete formulář
+        self.selenium.find_element(By.XPATH, '//input[@type="submit"]').click()
+
+        # Počkejte krátce pro načtení stránky
+        import time
+        time.sleep(2)
+
+        # Ověření, že přihlášení bylo úspěšné (např. kontrola přítomnosti textu)
+        self.assertIn("Uživatel: admin", self.selenium.page_source)
+
+    def test_logout(self):
+        # Přejděte na stránku přihlášení
+        self.selenium.get(f'{self.live_server_url}/accounts/login/')
+
+        # Přihlaste se jako admin
+        username_input = self.selenium.find_element(By.NAME, "username")
+        password_input = self.selenium.find_element(By.NAME, "password")
+        username_input.send_keys('admin')
+        password_input.send_keys('admin')
+
+        # Odešlete formulář pro přihlášení
+        self.selenium.find_element(By.XPATH, '//input[@type="submit"]').click()
+
+        # Přejděte na stránku odhlášení
+        self.selenium.get(f'{self.live_server_url}/accounts/logout/')
+
+        # Počkejte krátce pro načtení stránky
+        import time
+        time.sleep(2)
+
+        # Ověřte, že jste byli odhlášeni (např. kontrola textu na stránce)
+        # Místo 'Bye!' zkontrolujte, co stránka po odhlášení skutečně obsahuje
+        self.assertIn("Vítejte na eshopu Carry less!",
+                      self.selenium.page_source)  # Tento text upravte podle obsahu po odhlášení
+
