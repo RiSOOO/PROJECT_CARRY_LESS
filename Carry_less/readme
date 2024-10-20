@@ -125,3 +125,19 @@ Přidávejte další URL, pohledy a šablony.
 Vytvářejte modely pro databázové tabulky.
 Přidávejte formuláře, autentizaci uživatelů a další funkce.
 Toto je základní průvodce instalací a rozběhnutím Django aplikace Carry_less.
+
+
+Final projekt 2024, Seznam dílčích úkolů
+
+ Nápad na eshop a jeho sortiment, tvorba loga
+ Tvorba E-R diagramu
+ Vytvoření základní šablony webu v Django
+ Vytvoření kategorií produktů
+ Přidání konkrétních produktů
+ Vytvořit admina
+ Vytvořit uživatele
+ Definovat oprávnění admin/uživatel
+ Přidat další kategorie
+ Vytvořit strom kategorií
+ Design
+ validace
