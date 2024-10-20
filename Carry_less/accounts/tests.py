@@ -12,7 +12,8 @@ class UserLoginTest(LiveServerTestCase):
         # Vytvoření testovacího uživatele
         self.user = User.objects.create_user(username='testuser', password='12345')
 
-        self.driver = webdriver.Chrome('/usr/bin/chromedriver')
+
+        self.driver = webdriver.Chrome()
         #self.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
         self.driver.implicitly_wait(10)
 

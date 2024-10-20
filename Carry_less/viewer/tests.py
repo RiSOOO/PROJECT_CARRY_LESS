@@ -93,7 +93,8 @@ class MySeleniumTests(LiveServerTestCase):
     def setUpClass(cls):
         super().setUpClass()
         # Nastavení Safari WebDriveru (může být i Chrome, podle potřeby)
-        cls.selenium = webdriver.Safari()  # Nebo použijte webdriver.Chrome() pro Chrome
+        cls.selenium = webdriver.Chrome()  # Nebo použijte webdriver.Chrome() pro Chrome
+
         cls.selenium.implicitly_wait(10)
 
         # Vytvoření admin uživatele pro testy
