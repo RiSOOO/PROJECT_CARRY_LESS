@@ -1,5 +1,6 @@
 # PROJECT_CARRY_LESS
-Final projekt 2024, Seznam dílčích úkolů
+ On-line obchod s turistickým zbožím.
+
 
 - [x] Nápad na eshop a jeho sortiment, tvorba loga<br>
 - [x] Tvorba E-R diagramu <br>
@@ -12,4 +13,4 @@ Final projekt 2024, Seznam dílčích úkolů
  - [x] Přidat další kategorie<br>
  - [ ] Vytvořit strom kategorií<br>
  - [x] Design<br>
- - [x] validace
+ - [x] validace vstupních dat
