@@ -1,3 +1,6 @@
+# PROJECT_CARRY_LESS
+ On-line obchod s turistickým zbožím.
+
 1. Nainstalujte Python a Django
 Nejdříve potřebujete mít nainstalovaný Phycharm a Django.
 
@@ -126,18 +129,15 @@ Vytvářejte modely pro databázové tabulky.
 Přidávejte formuláře, autentizaci uživatelů a další funkce.
 Toto je základní průvodce instalací a rozběhnutím Django aplikace Carry_less.
 
-
-Final projekt 2024, Seznam dílčích úkolů
-
- Nápad na eshop a jeho sortiment, tvorba loga
- Tvorba E-R diagramu
- Vytvoření základní šablony webu v Django
- Vytvoření kategorií produktů
- Přidání konkrétních produktů
- Vytvořit admina
- Vytvořit uživatele
- Definovat oprávnění admin/uživatel
- Přidat další kategorie
- Vytvořit strom kategorií
- Design
- validace
+- [x] Nápad na eshop a jeho sortiment, tvorba loga<br>
+- [x] Tvorba E-R diagramu <br>
+ - [x] Vytvoření základní šablony webu v Django<br>
+- [x] Vytvoření kategorií produktů<br>
+ - [x] Přidání konkrétních produktů<br>
+ - [x] Vytvořit admina<br>
+ - [x] Vytvořit uživatele<br>
+ - [x] Definovat oprávnění admin/uživatel<br>
+ - [x] Přidat další kategorie<br>
+ - [ ] Vytvořit strom kategorií<br>
+ - [x] Design<br>
+ - [x] validace vstupních dat
