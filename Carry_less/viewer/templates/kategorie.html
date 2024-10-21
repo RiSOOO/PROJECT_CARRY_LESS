@@ -17,12 +17,14 @@
         {% endif %}
     </ul>
 
-    <h2>Nalezené produkty</h2>
-    <ul>
-         {% for product in products %}
-        <li>
-            {{product.name}}
-        </li>
-         {% endfor %}
-    </ul>
+  <div class="card" style="width: 18rem;">
+  <div class="card-header">
+    Nalezené produkty
+  </div>
+  <ul class="list-group list-group-flush">
+      {% for product in products %}
+    <li class="list-group-item">{{product.name}}</li>
+      {% endfor %}
+  </ul>
+</div>
  {% endblock %}
